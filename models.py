@@ -11,7 +11,7 @@ class AdalineGD:
         self.w_ = rgen.normal(loc=0.0, scale=0.01,
         size=1 + X.shape[1])
 
-        self.b_ = np.float_(0.)
+        self.b_ = np.float64(0.)
         self.losses_ = []
         for i in range(self.n_iter):
             net_input = self.net_input(X)
@@ -41,7 +41,7 @@ class LogisticRegressionGD:
 
     def fit(self, X, y):
         rgen = np.random.RandomState(self.random_state)
-        self.w_ = rgen.normal(loc=0.0. scale=0.01, size=1+ X.shape[1])
+        self.w_ = rgen.normal(loc=0.0, scale=0.01, size=1+ X.shape[1])
         self.losses_ = []
 
         for i in range(self.n_iter):
@@ -54,7 +54,7 @@ class LogisticRegressionGD:
             self.losses_.append(loss)
         return self
     def net_input(self, X):
-        return np.dot(x, self.w_[1:]) + self.w_[0]
+        return np.dot(X, self.w_[1:]) + self.w_[0]
     
     def activation(self, z):
         return 1. / (1. + np.exp(-np.clip(z, -250,250)))
