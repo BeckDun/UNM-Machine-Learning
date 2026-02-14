@@ -75,5 +75,4 @@ axes[1][1].set_ylabel('Cross-Entropy Loss')
 axes[1][1].set_title('Wine Dataset - Logistic Regression')
 
 plt.tight_layout()
-plt.show()
-plt.savefig("plot.png")
+plt.savefig("plot.eps")
