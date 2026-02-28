@@ -13,8 +13,10 @@ class LinearSVC:
         random_generator = np.random.RandomState(self.random_state)
         self.w_ = random_generator.normal(loc=0.0, scale=.1, size = X.shape[1])
         self.b_ = 0.0
+        self.losses_ = []
 
         for _ in range(self.n_iter):
+            epoch_loss = 0.0
             for xi,target in zip(X,y):
 
                 margin = target * self.net_input(xi)
@@ -25,6 +27,11 @@ class LinearSVC:
                 else:
                     self.w_ -= self.eta * (2.0 * self.lambda_param * self.w_ - target * xi)
                     self.b_ += self.eta * target
+
+                epoch_loss += max(0, 1 - margin)
+            avg_loss = epoch_loss / len(y) + self.lambda_param * np.dot(self.w_, self.w_)
+            self.losses_.append(avg_loss)
+                
         
         return self
 
