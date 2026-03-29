@@ -1,0 +1,7 @@
+dataset,kernel,params,single_test_acc,single_test_err,single_train_time,ensemble_test_acc,ensemble_test_err,ensemble_train_time,n_models,acc_diff
+MNIST,linear,C=10.0,0.9426,0.0574,353.23,0.9329,0.0671,14.48,10,-0.0097
+MNIST,rbf,"C=50.0, gamma=0.001",0.9785,0.0215,9.52,0.9594,0.0406,2.43,10,-0.0191
+MNIST,poly,"C=0.1, gamma=0.01, degree=3",0.9772,0.0228,13.56,0.9615,0.0385,4.01,10,-0.0157
+Fashion-MNIST,linear,C=0.01,0.8484,0.1516,18.07,0.8388,0.1612,2.24,10,-0.0096
+Fashion-MNIST,rbf,"C=50.0, gamma=0.001",0.8952,0.1048,17.79,0.8763,0.1237,2.82,10,-0.0189
+Fashion-MNIST,poly,"C=0.1, gamma=0.01, degree=3",0.8926,0.1074,18.29,0.8711,0.1289,3.01,10,-0.0215

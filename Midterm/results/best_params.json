@@ -1,0 +1,30 @@
+{
+  "MNIST": {
+    "linear": {
+      "C": 10
+    },
+    "rbf": {
+      "C": 50,
+      "gamma": 0.001
+    },
+    "poly": {
+      "C": 0.1,
+      "gamma": 0.01,
+      "degree": 3
+    }
+  },
+  "Fashion-MNIST": {
+    "linear": {
+      "C": 0.01
+    },
+    "rbf": {
+      "C": 50,
+      "gamma": 0.001
+    },
+    "poly": {
+      "C": 0.1,
+      "gamma": 0.01,
+      "degree": 3
+    }
+  }
+}
