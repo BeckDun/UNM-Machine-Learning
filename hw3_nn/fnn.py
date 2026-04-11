@@ -103,5 +103,23 @@ gs_lr_tfidf = GridSearchCV(lr_tfidf, small_param_grid,
                         verbose=1,
                         n_jobs=-1)
 
+start_time = time.time()
 gs_lr_tfidf.fit(X_train, y_train)
+end_time = time.time()
 
+best_model = gs_lr_tfidf.best_estimator_ 
+train_accuracy = best_model.score(X_train, y_train) 
+test_accuracy = best_model.score(X_test, y_test) 
+time_cost = end_time - start_time
+
+print("\nBest Parameters:") 
+print(gs_lr_tfidf.best_params_) 
+print("\nTraining Accuracy:", train_accuracy) 
+print("Test Accuracy:", test_accuracy) 
+print("\nTime Cost (seconds):\n", time_cost)
+
+print("Book output")
+print(f'Best parameter set: {gs_lr_tfidf.best_params_}')
+print(f'CV Accuracy: {gs_lr_tfidf.best_score_:.3f}')
+clf = gs_lr_tfidf.best_estimator_
+print(f'Test Accuracy: {clf.score(X_test, y_test):.3f}')
