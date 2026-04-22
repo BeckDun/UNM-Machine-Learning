@@ -1,5 +1,7 @@
+import torch
 import torch.nn as nn
 from sklearn.preprocessing import MinMaxScaler
+import time
 
 class RNN(nn.Module):
     def __init__(self, input_size = 1, hidden_size = 64, output_size = 1):
@@ -12,3 +14,39 @@ class RNN(nn.Module):
         output = output[:, -1, :]
         output = self.fully_connected_layer(output)
         return output
+
+
+def train_model(model, X_train, y_train, X_test, y_test, epochs=20):
+    mean_squared_error = nn.MSELoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
+
+    losses = []
+
+    training_start_time = time.time()
+    for epoch in range(epochs):
+        model.train()
+
+        predictions = model(X_train)
+        loss = mean_squared_error(predictions, y_train)
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        losses.append(loss.item())
+    training_end_time = time.time()
+
+    training_time = training_end_time - training_start_time
+
+    model.eval()
+    with torch.no_grad():
+        test_predictions = model(X_test)
+        test_loss = mean_squared_error(test_predictions, y_test)
+    
+    return {
+        "test_loss": test_loss.item(),
+        "train_losses": losses,
+        "training_time": training_time
+    }
+
+
+
