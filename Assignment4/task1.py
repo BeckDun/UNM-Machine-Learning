@@ -39,10 +39,12 @@ for ticker in tickers:
     series = torch.tensor(prices_scaled[ticker].values, dtype=torch.float32)
     X, y = make_sequences(series, M, N)
 
+    idx = torch.randperm(len(X))
+    X, y = X[idx], y[idx]
+
     n_train = int(len(X) * 0.8)
     X_train, X_test = X[:n_train], X[n_train:]
     y_train, y_test = y[:n_train], y[n_train:]
-
     datasets[ticker] = {
         "X_train": X_train.unsqueeze(-1),
         "y_train": y_train,
