@@ -20,7 +20,8 @@ def train_model(model, X_train, y_train, X_test, y_test, epochs=20):
     mean_squared_error = nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
 
-    losses = []
+    train_losses = []
+    test_losses = []
 
     training_start_time = time.time()
     for epoch in range(epochs):
@@ -32,7 +33,7 @@ def train_model(model, X_train, y_train, X_test, y_test, epochs=20):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        losses.append(loss.item())
+        train_losses.append(loss.item())
     training_end_time = time.time()
 
     training_time = training_end_time - training_start_time
@@ -41,10 +42,11 @@ def train_model(model, X_train, y_train, X_test, y_test, epochs=20):
     with torch.no_grad():
         test_predictions = model(X_test)
         test_loss = mean_squared_error(test_predictions, y_test)
+        test_losses.append(test_loss.item())
     
     return {
-        "test_loss": test_loss.item(),
-        "train_losses": losses,
+        "test_losses": test_losses,
+        "train_losses": train_losses,
         "training_time": training_time
     }
 
