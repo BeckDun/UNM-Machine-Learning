@@ -16,9 +16,9 @@ class RNN(nn.Module):
         return output
 
 
-def train_model(model, X_train, y_train, X_test, y_test, epochs=20):
+def train_model(model, X_train, y_train, X_test, y_test, epochs=20, lr=0.001):
     mean_squared_error = nn.MSELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
+    optimizer = torch.optim.Adam(model.parameters(), lr = lr)
 
     train_losses = []
     test_losses = []

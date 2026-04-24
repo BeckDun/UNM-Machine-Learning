@@ -1,5 +1,6 @@
 import task1
 import task2
+import task4
 import matplotlib.pyplot as plt
 
 datasets = task1.pre_process_data()
@@ -16,9 +17,9 @@ for ticker in datasets:
     X_test = data["X_test"]
     y_test = data["y_test"]
 
-    model = task2.RNN(input_size=1)
+    model = task4.GRUModel(hidden_size=80)
 
-    result = task2.train_model(model, X_train, y_train, X_test, y_test)
+    result = task2.train_model(model, X_train, y_train, X_test, y_test, epochs=80, lr=.0015)
 
     print(f"Final Train Loss: {result['train_losses'][-1]}")
     print(f"Test Loss:        {result['test_losses'][-1]:.6f}")
@@ -28,12 +29,9 @@ for ticker in datasets:
 
 for ticker in results:
     train_losses = results[ticker]["train_losses"]
-    test_losses = results[ticker]["test_losses"]
-
-    plt.figure()  # new plot for each stock
+    plt.figure()  
 
     plt.plot(train_losses, label="Train Loss")
-    plt.plot(test_losses, label="Test Loss")
 
     plt.title(f"{ticker} Loss vs Epoch")
     plt.xlabel("Epoch")
