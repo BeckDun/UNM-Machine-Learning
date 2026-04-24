@@ -1,58 +1,66 @@
 import yfinance as yf 
 import pandas as pd 
+import numpy as np
 import torch 
 from sklearn.preprocessing import MinMaxScaler
 import pickle
 import time
 import task2
 
-def make_sequences(series, M, N):
+np.random.seed(1)
+torch.manual_seed(1)
+
+# download price data
+tickers = ["KO", "WMT", "SPY", "ED"]
+start, end = "2020-01-01", "2022-01-01"
+
+dfs = {}
+for t in tickers:
+    df = yf.download(t, start=start, end=end, progress=False)
+    dfs[t] = df["Close"].squeeze()
+    print(f"downloaded {t}")
+    time.sleep(3)
+
+prices = pd.DataFrame(dfs).dropna()
+
+N = 60
+M = 1
+
+
+def make_sequences(series, lookback, horizon):
     X, y = [], []
-    for i in range(len(series) - M - N + 1):
-        X.append(series[i:i+M])
-        y.append(series[i+M:i+M+N])
-    return torch.stack(X), torch.stack(y)
+    for i in range(len(series) - lookback - horizon + 1):
+        X.append(series[i : i + lookback])
+        y.append(series[i + lookback])
+    return (
+        np.array(X).reshape(-1, lookback).astype(np.float32),
+        np.array(y).reshape(-1, 1).astype(np.float32),
+    )
 
-def pre_process_data():
-    tickers = ["AAPL", "TSLA", "GOOGL", "PFE"]
-    start = "2020-01-01"
-    end = "2022-01-01"
-    M = 60
-    N = 1
 
-    dfs = {}
-    for ticker in tickers:
-        df = yf.download(ticker, start=start, end=end, progress=False)
-        dfs[ticker] = df["Close"].squeeze()
-        # I was running into a limiting error with yfinance so I wait 5 seconds between request. (You might also have to upgrade yfinance)
-        time.sleep(5)
+datasets = {}
+for t in tickers:
+    vals = prices[t].values
+    X, y = make_sequences(vals, N, M)
 
-    prices = pd.DataFrame(dfs).dropna()
-
-    scalers = {}
-    prices_scaled = prices.copy()
-    for ticker in tickers:
-        sc = MinMaxScaler()
-        prices_scaled[ticker] = sc.fit_transform(prices[[ticker]])
-        scalers[ticker] = sc
-
-    datasets = {}
-    for ticker in tickers:
-        series = torch.tensor(prices_scaled[ticker].values, dtype=torch.float32)
-        X, y = make_sequences(series, M, N)
-
-        idx = torch.randperm(len(X))
-        X, y = X[idx], y[idx]
-
-        n_train = int(len(X) * 0.8)
-        X_train, X_test = X[:n_train], X[n_train:]
-        y_train, y_test = y[:n_train], y[n_train:]
-        datasets[ticker] = {
-            "X_train": X_train.unsqueeze(-1),
-            "y_train": y_train,
-            "X_test": X_test.unsqueeze(-1),
-            "y_test": y_test,
-            "scaler": scalers[ticker],
-        }
-    return datasets
     
+    idx = np.random.permutation(len(X))
+    X, y = X[idx], y[idx]
+    split = int(len(X) * 0.8)
+
+    sc_X = MinMaxScaler()
+    sc_y = MinMaxScaler()
+
+    X_tr = sc_X.fit_transform(X[:split]).reshape(-1, N, 1).astype(np.float32)
+    X_te = sc_X.transform(X[split:]).reshape(-1, N, 1).astype(np.float32)
+    y_tr = sc_y.fit_transform(y[:split]).astype(np.float32)
+    y_te = sc_y.transform(y[split:]).astype(np.float32)
+
+    datasets[t] = {
+        "X_train": torch.from_numpy(X_tr),
+        "y_train": torch.from_numpy(y_tr),
+        "X_test": torch.from_numpy(X_te),
+        "y_test": torch.from_numpy(y_te),
+        "scaler": sc_y,
+    }
+    print(f"{t}: train={X_tr.shape}, test={X_te.shape}")
