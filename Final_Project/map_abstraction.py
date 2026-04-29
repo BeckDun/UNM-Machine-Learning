@@ -18,23 +18,21 @@ class MapAbstraction:
     def abstract_map(self, binary_map, new_shape):
         height, width = binary_map.shape
         new_h, new_w = new_shape
-
         
-        # pooling to get new map
-        bh = math.ceil(height/new_h)
-        bw = math.ceil(width/new_w)
         out = np.zeros((new_h, new_w), dtype=np.uint8)
 
+       
+        row_edges = np.linspace(0, height, new_h + 1).astype(int)
+        col_edges = np.linspace(0, width, new_w + 1).astype(int)
+
         for i in range(new_h):
-            r0 = i * bh
-            r1 = min((i+1)*bh, height)
+            r0, r1 = row_edges[i], row_edges[i+1]
             for j in range(new_w):
-                c0 = j * bw
-                c1 = min((j+1)* bw, width)
+                c0, c1 = col_edges[j], col_edges[j+1]
                 
-                block = binary_map[r0:r1 , c0:c1]
+                block = binary_map[r0:r1, c0:c1]                
+                out[i,j] = 1 if block.any() else 0
                 
-                out[i,j] = 0 if block.size == 0 else (1 if block.max() else 0)
         return out
 
 
