@@ -202,7 +202,7 @@ for t in tickers:
 
 
 #plot
-fig, axes = plt.subplots(4, 2, figsize=(14, 18))
+fig, axes = plt.subplots(4, 2, figsize=(16, 20))
 fig.suptitle("Task 5 - LSTM", fontsize=14)
 
 for i, t in enumerate(tickers):
@@ -224,8 +224,8 @@ for i, t in enumerate(tickers):
     axes[i, 1].grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("task5_results.png", dpi=150)
-print("saved task5_results.png")
+plt.savefig("task5_results.eps", dpi=150)
+print("saved task5_results.")
 
 print(f"\n{'Ticker':<6} {'Time':>6} {'Tr MSE':>10} {'Tr RMSE':>9} {'Tr MAPE':>9} {'Te MSE':>10} {'Te RMSE':>9} {'Te MAPE':>9} {'Acc':>7}")
 
