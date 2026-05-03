@@ -49,8 +49,9 @@ class Environment:
 
         if target:
             map[target[0]][target[1]] = CellType.TARGET
+            self.target = target
         else:
-            self.choose_target(self.map)
+            self.target = self.choose_target(self.map)
 
         self.agent_start = agent_start
             
@@ -75,6 +76,7 @@ class Environment:
         
         loc =  np.random.choice(free_cells)
         map[loc[0]][loc[1]] = CellType.TARGET
+        return loc
 
 
     def move(self, old_state : tuple, action : Move, strategy : Strategy) -> tuple:
@@ -88,8 +90,7 @@ class Environment:
         reward = strategy.get_reward(map = self.map, curr_state=new_state)
 
         done : bool
-        if (self.block_at(new_state) == CellType.OOB or 
-            self.block_at(new_state) == CellType.OBSTACLE):
+        if block_at(curr_state=new_state) != CellType.EMPTY:
             done = True
         else:
             done = False
@@ -109,7 +110,8 @@ class Environment:
         plt.xticks(np.arange(-.5, 40, 1), []) # Hide labels, keep grid ticks matching shape
         plt.yticks(np.arange(-.5, 40, 1), []) 
 
-        plt.plot(current_state[0], current_state[1], "ro")
+        plt.plot(current_state[0], current_state[1], "or")
+        plt.plot(self.target[0], self.target[1], "oy")
 
         plt.title("Current Map")
         plt.show()
