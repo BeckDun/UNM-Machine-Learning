@@ -9,7 +9,7 @@ class CellType(Enum):
     OBSTACLE = 1,
     TARGET = 2
 
-def block_at(map : np.NDArray, curr_state : tuple[int, int]) -> int:
+def block_at(map : np.ndarray, curr_state : tuple[int, int]) -> int:
         height = np.size(map, 0)
         width = np.size(map, 1)
 

@@ -1,17 +1,9 @@
 # Strategy class
 
 import numpy as np
-from abc import ABC, abstractmethod
 from utilities import CellType, block_at
 
-class Strategy(ABC):
-
-    @abstractmethod
-    def get_reward():
-        pass
-        
-
-class NaiveStrategy(Strategy):
+class NaiveStrategy():
 
     def __init__(self, target_reward : int = 100, 
                  punishment : int = -100, 
@@ -20,7 +12,7 @@ class NaiveStrategy(Strategy):
         self.punishment = punishment
         self.neutral_action = neutral_action
 
-    def get_reward(self, map : np.NDArray, curr_state : tuple[int, int]) -> int:
+    def get_reward(self, map : np.ndarray, curr_state : tuple[int, int]) -> int:
 
         match block_at(map, curr_state):
             case CellType.EMPTY:

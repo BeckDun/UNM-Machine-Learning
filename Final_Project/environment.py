@@ -2,7 +2,6 @@
 
 from map_abstraction import MapAbstraction
 import numpy as np
-from strategy import Strategy
 from matplotlib import pyplot as plt
 
 from enum import Enum
@@ -34,21 +33,21 @@ class Environment:
 
     def __init__(self,
                  bmp_file = None, 
-                 map : np.ndarray = None,
-                 target : tuple[int, int] = None,
+                 map = None,
+                 target = None,
                  agent_start : tuple[int, int] = (0, 0)):
         
         if (bmp_file is None and map is None):
             raise ValueError("Must pass in either a bitmap or a created map!")
 
         if map is None:
-            abstractor = MapAbstraction(self.bmp_file)
+            abstractor = MapAbstraction(bmp_file)
             self.map = abstractor.get_abstract_map((40, 40))
         else:
             self.map = map
 
         if target:
-            map[target[0]][target[1]] = CellType.TARGET
+            self.map[target[0]][target[1]] = CellType.TARGET
             self.target = target
         else:
             self.target = self.choose_target(self.map)
@@ -56,7 +55,7 @@ class Environment:
         self.agent_start = agent_start
             
 
-    def choose_target(map):
+    def choose_target(self, map):
         """
         Choose a random empty block on the map as the target.
 
@@ -79,18 +78,18 @@ class Environment:
         return loc
 
 
-    def move(self, old_state : tuple, action : Move, strategy : Strategy) -> tuple:
+    def move(self, old_state : tuple, action : Move, strategy) -> tuple:
         """
         return:
         - new state (int tuple of location)
         - reward (int)
         """
 
-        new_state = (old_state[0] + action[0], old_state[1] + action[1])
+        new_state = (old_state[0] + action.value[0], old_state[1] + action.value[1])
         reward = strategy.get_reward(map = self.map, curr_state=new_state)
 
         done : bool
-        if block_at(curr_state=new_state) != CellType.EMPTY:
+        if block_at(self.map, curr_state=new_state) != CellType.EMPTY:
             done = True
         else:
             done = False
@@ -98,7 +97,7 @@ class Environment:
 
         return new_state, reward, done
     
-    def plot_environment(self, map : np.NDArray, current_state : tuple) -> None:
+    def plot_environment(self, map : np.ndarray, current_state : tuple) -> None:
         plt.figure(figsize=(8, 8))
 
         # Display the 2D array. 'cmap="gray_r"' makes 0 white (free) and 1 black (obstacle).
