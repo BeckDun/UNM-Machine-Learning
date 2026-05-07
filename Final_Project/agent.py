@@ -32,8 +32,12 @@ class Agent:
             return np.random.choice(self.actions_list)
         else:
             row, col = state
-            best_action_index = np.argmax(self.q_table[row, col])
-            return self.actions_list[best_action_index]
+            q_values = self.q_table[row, col]
+
+            max_q = np.max(q_values)
+            best_indices = np.where(q_values == max_q)[0]
+            chosen_index = np.random.choice(best_indices)
+            return self.actions_list[chosen_index]
 
 
     def step(self, state: tuple[int,int], action: Move, strategy, method = "q_learning"):

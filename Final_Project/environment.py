@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 
 from enum import Enum
 from utilities import CellType, block_at
+import random
 
 class Move(Enum):
     UP = (-1, 0)
@@ -47,13 +48,27 @@ class Environment:
             self.map = map
 
         if target:
-            self.map[target[0]][target[1]] = CellType.TARGET
+            self.map[target[0]][target[1]] = CellType.TARGET.value
             self.target = target
         else:
             self.target = self.choose_target(self.map)
 
         self.agent_start = agent_start
             
+    def is_valid_state(self, state: tuple[int, int]) -> bool:
+        row, col = state
+        height, width = self.map.shape
+
+        if row < 0 or row >= height:
+            return False
+
+        if col < 0 or col >= width:
+            return False
+
+        if block_at(self.map, state) == CellType.OBSTACLE.value:
+            return False
+
+        return True
 
     def choose_target(self, map):
         """
@@ -71,10 +86,10 @@ class Environment:
         free_cells = [(row, col) 
                       for row in range(np.size(map, 0))
                       for col in range(np.size(map, 1))
-                      if block_at(map, (row, col)) == CellType.EMPTY]
+                      if block_at(map, (row, col)) == CellType.EMPTY.value]
         
-        loc =  np.random.choice(free_cells)
-        map[loc[0]][loc[1]] = CellType.TARGET
+        loc =  random.choice(free_cells)
+        map[loc[0]][loc[1]] = CellType.TARGET.value
         return loc
 
 
@@ -85,20 +100,22 @@ class Environment:
         - reward (int)
         """
 
-        new_state = (old_state[0] + action.value[0], old_state[1] + action.value[1])
-        reward = strategy.get_reward(map = self.map, curr_state=new_state)
+        candidate_state = (old_state[0] + action.value[0], old_state[1] + action.value[1])
 
-        done : bool
-        if block_at(self.map, curr_state=new_state) != CellType.EMPTY:
-            done = True
+        reward = strategy.get_reward(map = self.map, curr_state=candidate_state)
+
+        if self.is_valid_state(candidate_state):
+            new_state = candidate_state
         else:
-            done = False
+            new_state = old_state
 
+        
+        done = block_at(self.map, curr_state=new_state) == CellType.TARGET.value
 
         return new_state, reward, done
     
     def plot_environment(self, map : np.ndarray, current_state : tuple) -> None:
-        plt.figure(figsize=(8, 8))
+        plt.clf()
 
         # Display the 2D array. 'cmap="gray_r"' makes 0 white (free) and 1 black (obstacle).
         # Change it to 'cmap="gray"' if you want 0 to be black and 1 to be white.
@@ -109,8 +126,8 @@ class Environment:
         plt.xticks(np.arange(-.5, 40, 1), []) # Hide labels, keep grid ticks matching shape
         plt.yticks(np.arange(-.5, 40, 1), []) 
 
-        plt.plot(current_state[0], current_state[1], "or")
-        plt.plot(self.target[0], self.target[1], "oy")
+        plt.plot(current_state[1], current_state[0], "or")
+        plt.plot(self.target[1], self.target[0], "oy")
 
         plt.title("Current Map")
-        plt.show()
+        plt.pause(0.05)
