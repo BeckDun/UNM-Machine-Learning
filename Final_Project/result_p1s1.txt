@@ -1,0 +1,202 @@
+$ python param_sweep.py 
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:35<00:00, 139.05it/s]
+Testing SARSA
+    accuracy:  58.35294117647059 , valid_count:  744 , total:  1275
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:35<00:00, 139.70it/s]
+Testing Q-learning
+    accuracy:  48.07843137254902 , valid_count:  613 , total:  1275
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:17<00:00, 281.18it/s]
+Testing SARSA
+    accuracy:  72.3921568627451 , valid_count:  923 , total:  1275
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:19<00:00, 255.32it/s]
+Testing Q-learning
+    accuracy:  74.0392156862745 , valid_count:  944 , total:  1275
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:15<00:00, 327.82it/s]
+Testing SARSA
+    accuracy:  84.07843137254902 , valid_count:  1072 , total:  1275
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:13<00:00, 363.54it/s]
+Testing Q-learning
+    accuracy:  87.37254901960785 , valid_count:  1114 , total:  1275
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:41<00:00, 120.75it/s]
+Testing SARSA
+    accuracy:  62.274509803921575 , valid_count:  794 , total:  1275
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:14<00:00, 352.32it/s]
+Testing Q-learning
+    accuracy:  95.45098039215686 , valid_count:  1217 , total:  1275
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:25<00:00, 197.95it/s]
+Testing SARSA
+    accuracy:  16.705882352941178 , valid_count:  213 , total:  1275
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:17<00:00, 284.41it/s]
+Testing Q-learning
+    accuracy:  100.0 , valid_count:  1275 , total:  1275
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [01:36<00:00, 51.74it/s]
+Testing SARSA
+    accuracy:  37.95620437956204 , valid_count:  468 , total:  1233
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:28<00:00, 172.87it/s]
+Testing Q-learning
+    accuracy:  49.310624493106246 , valid_count:  608 , total:  1233
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [01:36<00:00, 51.55it/s]
+Testing SARSA
+    accuracy:  49.87834549878345 , valid_count:  615 , total:  1233
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:14<00:00, 335.04it/s]
+Testing Q-learning
+    accuracy:  77.45336577453365 , valid_count:  955 , total:  1233
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:58<00:00, 28.03it/s]
+Testing SARSA
+    accuracy:  23.033252230332522 , valid_count:  284 , total:  1233
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:18<00:00, 276.66it/s]
+Testing Q-learning
+    accuracy:  88.72668288726683 , valid_count:  1094 , total:  1233
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [04:14<00:00, 19.65it/s]
+Testing SARSA
+    accuracy:  2.2708840227088403 , valid_count:  28 , total:  1233
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:11<00:00, 421.05it/s]
+Testing Q-learning
+    accuracy:  94.64720194647201 , valid_count:  1167 , total:  1233
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [01:43<00:00, 48.12it/s]
+Testing SARSA
+    accuracy:  19.140308191403083 , valid_count:  236 , total:  1233
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:14<00:00, 354.31it/s]
+Testing Q-learning
+    accuracy:  97.5669099756691 , valid_count:  1203 , total:  1233
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:28<00:00, 33.73it/s]
+Testing SARSA
+    accuracy:  29.691032403918616 , valid_count:  394 , total:  1327
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:40<00:00, 123.01it/s]
+Testing Q-learning
+    accuracy:  44.913338357196686 , valid_count:  596 , total:  1327
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:21<00:00, 35.28it/s]
+Testing SARSA
+    accuracy:  29.238884702336097 , valid_count:  388 , total:  1327
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:20<00:00, 246.27it/s]
+Testing Q-learning
+    accuracy:  77.09118311981914 , valid_count:  1023 , total:  1327
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [03:58<00:00, 21.01it/s]
+Testing SARSA
+    accuracy:  9.419743782969103 , valid_count:  125 , total:  1327
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:21<00:00, 232.02it/s]
+Testing Q-learning
+    accuracy:  85.4559155990957 , valid_count:  1134 , total:  1327
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [03:39<00:00, 22.73it/s]
+Testing SARSA
+    accuracy:  8.289374529012811 , valid_count:  110 , total:  1327
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:17<00:00, 289.84it/s]
+Testing Q-learning
+    accuracy:  94.8756593820648 , valid_count:  1259 , total:  1327
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [04:12<00:00, 19.79it/s]
+Testing SARSA
+    accuracy:  2.7128862094951014 , valid_count:  36 , total:  1327
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:11<00:00, 429.84it/s]
+Testing Q-learning
+    accuracy:  96.91032403918614 , valid_count:  1286 , total:  1327
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:53<00:00, 28.89it/s]
+Testing SARSA
+    accuracy:  25.627705627705627 , valid_count:  296 , total:  1155
+    alpha:  0.1 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:40<00:00, 124.78it/s]
+Testing Q-learning
+    accuracy:  47.96536796536797 , valid_count:  554 , total:  1155
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:30<00:00, 33.22it/s]
+Testing SARSA
+    accuracy:  39.65367965367965 , valid_count:  458 , total:  1155
+    alpha:  0.3 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:22<00:00, 226.41it/s]
+Testing Q-learning
+    accuracy:  83.29004329004329 , valid_count:  962 , total:  1155
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [03:43<00:00, 22.38it/s]
+Testing SARSA
+    accuracy:  6.926406926406926 , valid_count:  80 , total:  1155
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:20<00:00, 240.04it/s]
+Testing Q-learning
+    accuracy:  86.83982683982684 , valid_count:  1003 , total:  1155
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:51<00:00, 29.11it/s]
+Testing SARSA
+    accuracy:  19.393939393939394 , valid_count:  224 , total:  1155
+    alpha:  0.7 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:22<00:00, 217.58it/s]
+Testing Q-learning
+    accuracy:  98.61471861471861 , valid_count:  1139 , total:  1155
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  sarsa
+Training with SARSA
+100%|█████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:52<00:00, 28.98it/s]
+Testing SARSA
+    accuracy:  7.965367965367966 , valid_count:  92 , total:  1155
+    alpha:  0.9 , gamma:  0.5 , epsilon:  0.5 , alg:  qlearn
+Training with Q-learning
+100%|████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:23<00:00, 216.97it/s]
+Testing Q-learning
+    accuracy:  81.03896103896105 , valid_count:  936 , total:  1155
+nnail0@europa:/nfs/student/student/n/nnail0/429/UNM-Machine-Learning/Final_Project$ 

@@ -23,8 +23,11 @@ def test_agent(environment, agent, strategy, max_steps=200):
         path.append(next_state)
         state = next_state
         steps += 1
+
+
     
     environment.plot_environment(environment.map, state)
+    plt.savefig("plots/fig.png")
     plt.show()
 
 
@@ -61,5 +64,6 @@ def test_accuracy(environment, agent, strategy, max_steps=200):
 
     total = len(valid_starts)
     accuracy = (valid_count / total * 100) if total > 0 else 0.0
+    print("    accuracy: ", accuracy, ", valid_count: ", valid_count, ", total: ", total)
     return accuracy, valid_count, total
 
