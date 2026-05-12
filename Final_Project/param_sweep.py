@@ -1,3 +1,4 @@
+
 # check every parameter. 
 
 import numpy as np
@@ -22,19 +23,34 @@ def run_suite():
     algs = ["sarsa", "qlearn"]
 
     # stage 1: compare sarsa and q-learn on all maps. 
-    combos = [(w, 0.5, 0.5, z) for w in alphas for z in algs]
-    for i in range (1, 5):  # for each map:
-        ("Map ", i)
-        for alpha, gamma, epsilon, alg in combos: # for each combo
-            print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon, ", alg: ", alg)
-            run_agent(alpha, gamma, epsilon, alg, map_num=i)
+    # combos = [(w, 0.5, 0.5, z) for w in alphas for z in algs]
+    # for i in range (1, 5):  # for each map:
+    #     print("Map ", i)
+    #     for alpha, gamma, epsilon, alg in combos: # for each combo
+    #         print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon, ", alg: ", alg)
+    #         run_agent(alpha, gamma, epsilon, alg, map_num=i)
 
     # arbitrary value until further tested. 
-    best_alpha = 0.5
+    # sike, I actually do not know what the best alpha is.
 
-    epsilon_zero = [(x, 0.5, 0.0) for x in alphas for y in gammas]
-    epsilon_half = [(x, 0.5, 0.5) for x in alphas for y in gammas]
-    epsilon_one = [(x, 0.5, 1) for x in alphas for y in gammas]
+    # stage 2: compare epsilons on map 4 using sarsa
+    # seems that an alpha of 0.3 was best for SARSA on map 4 during initial exploration. 
+    # s2_combos = [(w, 0.5, x) for w in alphas for x in epsilons]
+    # for alpha, gamma, epsilon in s2_combos:
+    #     print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
+    #     run_agent(alpha, gamma, epsilon, "sarsa", 4)
+
+    # stage 3: compare gammas on map 4 using sarsa
+    s3_combos = [(w, x, 0.5) for w in alphas for x in gammas]
+    for alpha, gamma, epsilon in s3_combos:
+        print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
+        run_agent(alpha, gamma, epsilon, "sarsa", 4)
+        
+
+         
+
+
+
 
 
 def main():
