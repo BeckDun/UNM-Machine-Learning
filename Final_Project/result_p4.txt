@@ -1,0 +1,23 @@
+python param_sweep.py
+strategy:  S1 , alg:  sarsa
+Training with SARSA
+100%|██████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:32<00:00, 153.98it/s]
+Testing SARSA
+    accuracy:  45.8008658008658 , valid_count:  529 , total:  1155
+strategy:  S1 , alg:  qlearn
+Training with Q-learning
+100%|██████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:22<00:00, 225.17it/s]
+Testing Q-learning
+    accuracy:  99.82683982683983 , valid_count:  1153 , total:  1155
+nnail0@titan:~/429/UNM-Machine-Learning/Final_Project$ 
+nnail0@titan:~/429/UNM-Machine-Learning/Final_Project$ python param_sweep.py
+strategy:  S2 , alg:  sarsa
+Training with SARSA
+100%|██████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:24<00:00, 204.06it/s]
+Testing SARSA
+    accuracy:  75.75757575757575 , valid_count:  875 , total:  1155
+strategy:  S2 , alg:  qlearn
+Training with Q-learning
+100%|██████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:17<00:00, 282.41it/s]
+Testing Q-learning
+    accuracy:  96.27705627705627 , valid_count:  1112 , total:  1155
