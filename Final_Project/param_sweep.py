@@ -41,7 +41,8 @@ def run_suite():
     #     run_agent(alpha, gamma, epsilon, "sarsa", 4)
 
     # stage 3: compare gammas on map 4 using sarsa
-    s3_combos = [(w, x, 0.5) for w in alphas for x in gammas]
+    s3_gammas = [0.1, 0.5, 1]
+    s3_combos = [(w, x, 0.5) for w in alphas for x in s3_gammas]
     for alpha, gamma, epsilon in s3_combos:
         print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
         run_agent(alpha, gamma, epsilon, "sarsa", 4)
