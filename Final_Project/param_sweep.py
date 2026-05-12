@@ -45,10 +45,6 @@ def run_suite():
     for alpha, gamma, epsilon in s3_combos:
         print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
         run_agent(alpha, gamma, epsilon, "sarsa", 4)
-        
-
-         
-
 
 
 
