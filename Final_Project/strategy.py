@@ -5,6 +5,13 @@ from utilities import CellType, block_at
 
 
 class NaiveStrategy():
+    """
+    A simple strategy that provides rewards solely based on the state the agent just arrived in. 
+    A reward is provided for reaching the target and a strong punishment is provided for colliding 
+    with an obstacle or moving out of bounds. 
+    To incentivize reaching the target, a small penalty is provided when the agent's next state is an 
+    empty cell. 
+    """
     def __init__(self, target_reward : int = 100,
                  oob_punishment : int = -100,
                  obstacle_punishment: int = -100,
@@ -15,6 +22,9 @@ class NaiveStrategy():
         self.obstacle_punishment = obstacle_punishment
 
     def get_reward(self, map : np.ndarray, curr_state : tuple[int, int]) -> int:
+        """
+        Returns the integer reward based on the agent's new state and the strategy defined in the initializer.
+        """
 
         match block_at(map, curr_state):
             case CellType.EMPTY.value:

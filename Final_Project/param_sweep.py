@@ -8,15 +8,11 @@ from main import run_agent
 from itertools import product
 from map_abstraction import MapAbstraction
 
-
-"""
-what to check for:
-1. sarsa vs. q-learn with same params. (check for best alpha here?)
-2. compare epsilons using gamma = 0.5
-
-"""
-
 def run_suite():
+    """
+    A utility function used as a global main (slightly misleading class naming) to run all four
+    stages of part 6. Stages were commented/uncommented depending on what stage(s) needed to be run. 
+    """
     alphas = [0.1, 0.3, 0.5, 0.7, 0.9]
     epsilons = [0, 0.5, 1]
     algs = ["sarsa", "qlearn"]
@@ -43,18 +39,16 @@ def run_suite():
 
     # stage 3: compare gammas on map 4 using sarsa and qlearn
 
-    print("-----  STAGE 3  -----")
-
-    s3_gammas = [0.1, 0.5, 1]
-    s3_combos = [(0.5, x, 0.5, y) for x in s3_gammas for y in algs]
-    for alpha, gamma, epsilon, alg in s3_combos:
-        print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
-        run_agent(alpha, gamma, epsilon, alg, 4)
+    # s3_gammas = [0.1, 0.5, 1]
+    # s3_combos = [(0.5, x, 0.5, y) for x in s3_gammas for y in algs]
+    # for alpha, gamma, epsilon, alg in s3_combos:
+    #     print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
+    #     run_agent(alpha, gamma, epsilon, alg, 4)
 
     # stage 4: best combos
     # epsilon 0.5 and gamma 1 seemed best. fixing alpha at 0.5
 
-    # NOTE: SPECIFY STRATEGY in main, this was not added as a tunable parameter. 
+    # NOTE: SPECIFY STRATEGY in main, this was not added as a parameter. 
     # strategy = "S2"
     # for alg in algs: 
     #     print("strategy: ", strategy, ", alg: ", alg)
