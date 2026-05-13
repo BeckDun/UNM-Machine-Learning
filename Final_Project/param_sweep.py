@@ -18,7 +18,6 @@ what to check for:
 
 def run_suite():
     alphas = [0.1, 0.3, 0.5, 0.7, 0.9]
-    gammas = [0.1, 0.3, 0.5, 0.7, 0.9]
     epsilons = [0, 0.5, 1]
     algs = ["sarsa", "qlearn"]
 
@@ -34,30 +33,32 @@ def run_suite():
     # arbitrary value until further tested. 
     # sike, I actually do not know what the best alpha is.
 
-    # stage 2: compare epsilons on map 4 using sarsa
+    # stage 2: compare epsilons on map 4 using sarsa and qlearn
 
     # seems that an alpha of 0.3 was best for SARSA on map 4 during initial exploration. 
-    # s2_combos = [(w, 0.5, x) for w in alphas for x in epsilons]
+    # s2_combos = [(0.5, 0.5, x) for x in epsilons]
     # for alpha, gamma, epsilon in s2_combos:
     #     print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
-    #     run_agent(alpha, gamma, epsilon, "sarsa", 4)
+    #     run_agent(alpha, gamma, epsilon, "qlearn", 4)
 
-    # stage 3: compare gammas on map 4 using sarsa
+    # stage 3: compare gammas on map 4 using sarsa and qlearn
 
-    # s3_gammas = [0.1, 0.5, 1]
-    # s3_combos = [(w, x, 0.5) for w in alphas for x in s3_gammas]
-    # for alpha, gamma, epsilon in s3_combos:
-    #     print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
-    #     run_agent(alpha, gamma, epsilon, "sarsa", 4)
+    print("-----  STAGE 3  -----")
+
+    s3_gammas = [0.1, 0.5, 1]
+    s3_combos = [(0.5, x, 0.5, y) for x in s3_gammas for y in algs]
+    for alpha, gamma, epsilon, alg in s3_combos:
+        print("    alpha: ", alpha, ", gamma: ", gamma, ", epsilon: ", epsilon)
+        run_agent(alpha, gamma, epsilon, alg, 4)
 
     # stage 4: best combos
     # epsilon 0.5 and gamma 1 seemed best. fixing alpha at 0.5
 
     # NOTE: SPECIFY STRATEGY in main, this was not added as a tunable parameter. 
-    strategy = "S2"
-    for alg in algs: 
-        print("strategy: ", strategy, ", alg: ", alg)
-        run_agent(0.5, 1, 0.5, alg=alg, map_num=4)
+    # strategy = "S2"
+    # for alg in algs: 
+    #     print("strategy: ", strategy, ", alg: ", alg)
+    #     run_agent(0.5, 1, 0.5, alg=alg, map_num=4)
     
 
 

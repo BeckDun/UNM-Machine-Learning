@@ -12,6 +12,7 @@ def run_agent(alpha : float, gamma : float, epsilon : float, alg : Literal["sars
     enviroment = Environment(bmp_file=bmp_str)
     # agent = Agent(enviroment, alpha = 0.6, gamma = 0.5, epsilon = 0.0)
     agent = Agent(enviroment, alpha, gamma, epsilon)
+    # strategy = NaiveStrategy()
     strategy = DistanceShapedStrategy(enviroment.target)
 
     if alg == "qlearn":

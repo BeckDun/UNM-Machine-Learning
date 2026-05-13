@@ -74,3 +74,23 @@ Training with SARSA
 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [04:11<00:00, 19.92it/s]
 Testing SARSA
     accuracy:  25.97402597402597 , valid_count:  300 , total:  1155
+
+-------
+
+
+     python param_sweep.py 
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0
+Training with Q-learning
+100%|███████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [03:19<00:00, 25.03it/s]
+Testing Q-learning
+    accuracy:  39.740259740259745 , valid_count:  459 , total:  1155
+    alpha:  0.5 , gamma:  0.5 , epsilon:  0.5
+Training with Q-learning
+100%|███████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [02:20<00:00, 35.70it/s]
+Testing Q-learning
+    accuracy:  60.865800865800864 , valid_count:  703 , total:  1155
+    alpha:  0.5 , gamma:  0.5 , epsilon:  1
+Training with Q-learning
+100%|███████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [04:17<00:00, 19.44it/s]
+Testing Q-learning
+    accuracy:  62.5974025974026 , valid_count:  723 , total:  1155
