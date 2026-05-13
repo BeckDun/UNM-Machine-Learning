@@ -5,7 +5,12 @@ import math
 import matplotlib.pyplot as plt
 
 
-class MapAbstraction: 
+class MapAbstraction:
+    '''
+    This class abstracts bmp files of maps to be a regularized and smaller sized maps, stored in numpy arrays. 
+    We use a simple pooling strategy to get the average color in a given area and reduce the size, assigning the color black or white. 
+    This allows the agent to have a smaller map to explore and exports the map for easy usage in the rest of the programs. 
+    ''' 
     def __init__(self, bmp_file):
         self.bmp_file = bmp_file
     
