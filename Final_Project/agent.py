@@ -1,8 +1,34 @@
 import numpy as np
 from environment import Move
 from environment import Environment
-class Agent:
 
+class Agent:
+    """
+    The Agent class represents the reinforcement learning agent.
+
+    The agent:
+    - Interacts with the environment
+    - Chooses actions using an epsilon-greedy policy
+    - Learns by updating a Q-table using either:
+        - Q-Learning
+        - SARSA
+
+    The Q-table is a 3-dimensional NumPy array indexed as:
+        Q[row][col][action]
+
+    Each Q-value estimates how good it is to take a certain action
+    from a specific state.
+    """
+
+    '''
+    Agent initializer that sets default parameter values
+    
+    Args:
+        enviroment: enviroment object that agent interacts with
+        alpha: a float representing the learning rate to use. 
+        gamma: a float representing the discount value. 
+        epsilon: a float representing the exploration rate. 
+    '''
     def __init__ (self, enviroment, alpha = 0.1, gamma = 0.9, epsilon = 0.1):
         self.enviroment = enviroment
         self.alpha = alpha
@@ -24,7 +50,7 @@ class Agent:
         state (tuple[int,int]): The (row, column) position in the enviroment
 
     Return:
-        Move (Enum): The selected action
+        Action (Move Enum): The selected action
 
     '''
     def choose_action(self, state: tuple[int,int]):
@@ -40,7 +66,25 @@ class Agent:
             return self.actions_list[chosen_index]
 
 
+
+    '''
+    This function makes the agent take one step in the enviroment and
+    updates the Q-table using either Q-Learning or SARSA. 
+
+    Args: 
+        state (tuple[int,int]): The (row, column) position in the enviroment
+        action (Move Enum): The provided action for the agent to make in the enviroment
+        strategy: Reward strategy used by the environment to provide a reward to the agent.
+        method: The method used to update the Q-table. Only accepts either Q-learning or SARSA.
+
+    Return:
+        next_state (tuple[int,int]): The next (row, column) position in the enviroment
+        next_action (Move Enum): The provided action for the agent to make in the enviroment
+        reward: The reward provided by the eviroment to the agent
+        done (boolean): Boolean flag that lets us know if the agent found the target.
+    '''
     def step(self, state: tuple[int,int], action: Move, strategy, method = "q_learning"):
+        #Gets the index of the action provided in the actions list
         action_index = self.actions_list.index(action)
 
         next_state, reward, done = self.enviroment.move(state, action, strategy)
@@ -60,7 +104,7 @@ class Agent:
                 next_action = self.choose_action(next_state)
                 next_action_index = self.actions_list.index(next_action)
                 target = reward + self.gamma * self.q_table[next_row, next_col, next_action_index]
-            
+        #updates the Q-Table
         self.q_table[row, col, action_index] += self.alpha * (target - self.q_table[row, col, action_index])
 
         return next_state, next_action, reward, done

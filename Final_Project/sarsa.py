@@ -4,6 +4,25 @@ import time
 import random
 from utilities import CellType
 
+'''
+Train the agent using the SARSA reinforcement learning algorithm.
+
+For each episode:
+- Start the agent at a random free cell
+- Choose an initial action using the current policy
+- Repeatedly:
+    - take an action
+    - observe the next state and reward
+    - choose the next action
+    - update the Q-table
+
+Training stops when:
+- the target is reached
+- or the maximum number of steps is exceeded
+
+Unlike Q-learning, SARSA updates the Q-table using the
+actual next action selected by the policy.
+'''
 def traning_loop(environment, agent, strategy, episodes=1000, max_steps=500):
     # Precompute free cells once so every episode can start from a random position.
     # This gives the Q-table coverage across the full state space, not just

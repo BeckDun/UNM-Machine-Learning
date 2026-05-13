@@ -2,6 +2,19 @@ import numpy as np
 from matplotlib import pyplot as plt
 from utilities import CellType
 
+"""
+Test the trained agent by letting it navigate the environment
+using the learned Q-table.
+
+During testing:
+- Exploration is disabled (epsilon = 0)
+- The agent always chooses the best known action
+- The environment is plotted as the agent moves
+
+Testing stops when:
+- the target is reached
+- or the maximum number of steps is exceeded
+"""
 def test_agent(environment, agent, strategy, max_steps=200):
     agent.epsilon = 0
     state = environment.agent_start
